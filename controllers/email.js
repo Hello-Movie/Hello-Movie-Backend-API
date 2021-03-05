@@ -8,7 +8,7 @@ const emailController = {
     const { email, genres } = request.body;
     if (!email) return response.json({ ok: 0, errorMessage: 'Email required.' });
     const { error, value } = emailSchema.validate(email);
-    if (error) return respons.json({ok: 0, errorMessage: 'Invalid email.' });
+    if (error) return response.json({ok: 0, errorMessage: 'Invalid email.' });
     try {
       const data = await dbClient.db('test').collection('emails')
         .updateOne({ email }, { $set: { email, genres } }, { upsert: true });
